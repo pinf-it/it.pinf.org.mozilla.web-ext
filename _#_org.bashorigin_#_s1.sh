@@ -6,9 +6,6 @@ if [ ! -e "$__DIRNAME__/node_modules" ]; then
     popd > /dev/null
 fi
 
-
 function EXPORTS_run {
-
-echo "WEB-EXT RUN: $@"
-
+    BO_run_node "$__DIRNAME__/lib/runner.js" "$@"
 }
