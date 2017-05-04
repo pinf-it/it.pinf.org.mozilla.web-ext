@@ -2,7 +2,7 @@
   "name": "it.pinf.org.mozilla.web-ext",
   "version": "0.1.0",
   "dependencies": {
-    "bash.origin.test": "^0.1.25",
+    "bash.origin.test": "^0.1.28",
     "bluebird": "^3.5.0",
     "codeblock": "^0.2.8",
     "connect": "^3.6.0",

@@ -7,5 +7,12 @@ if [ ! -e "$__DIRNAME__/node_modules" ]; then
 fi
 
 function EXPORTS_run {
-    BO_run_node "$__DIRNAME__/lib/runner.js" "$@"
+
+    BO_log "$VERBOSE" "[it.pinf.org.mozilla.web-ext] run: $@"
+
+    BO_run_recent_node "$__DIRNAME__/lib/runner.js" "$@"
+}
+
+function EXPORTS_basepath {
+    echo "$__DIRNAME__"
 }
