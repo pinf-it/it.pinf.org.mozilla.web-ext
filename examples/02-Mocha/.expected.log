@@ -1,3 +1,4 @@
+>>>TEST_IGNORE_LINE:"(start|end|duration)": ".*Z",<<<
 <RESULT>
 {
     "stats": {
@@ -6,7 +7,7 @@
         "passes": 1,
         "pending": 0,
         "failures": 0,
-        "duration": 22
+        "duration": 27
     }
 }
 </RESULT>
