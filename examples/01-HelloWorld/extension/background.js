@@ -1,8 +1,11 @@
 
 
-browser.webRequest.onCompleted.addListener(function (requestDetails) {
+browser.webNavigation.onCompleted.addListener(function (requestDetails) {
 
-    if (requestDetails.tabId) {
+    if (
+        requestDetails.tabId &&
+        requestDetails.tabId !== -1
+    ) {
         browser.tabs.get(requestDetails.tabId).then(function (tab) {
 
             return browser.windows.get(tab.windowId).then(function (window) {
@@ -12,6 +15,12 @@ browser.webRequest.onCompleted.addListener(function (requestDetails) {
         }).catch(console.error);
     }
 
-} ,{
-    urls: ["<all_urls>"]
+}, {
+    url: [
+        {
+            schemes: [
+                "http"
+            ]
+        }
+    ]
 });
