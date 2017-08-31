@@ -20,7 +20,7 @@ CALL_webext run {
                     "Content-Type": "text/html"
                 });
                 res.end('<html>OK</html>');
-                API.stop();
+                API.SERVER.stop();
             };
         }
     }    

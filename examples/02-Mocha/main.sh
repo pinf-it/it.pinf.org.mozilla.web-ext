@@ -16,13 +16,12 @@ CALL_webext run {
     "routes": {
         "/": {
             "@it.pinf.org.mochajs#s1": {
+                "exit": true,
                 "tests": {
                     "01-HelloWorld": function /* CodeBlock */ () {
 
                         describe('Array', function () {
                             describe('#indexOf()', function () {
-
-                                // TODO: Test mesage with extension.
 
                                 it('should return -1 when the value is not present', function () {
                                     chai.assert.equal(-1, [1,2,3].indexOf(4));
