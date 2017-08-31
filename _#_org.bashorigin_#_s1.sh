@@ -6,6 +6,17 @@ if [ ! -e "$__DIRNAME__/node_modules" ]; then
     popd > /dev/null
 fi
 
+
+if [ ! -e "$__DIRNAME__/lib/.key.pem" ]; then
+    pushd "$__DIRNAME__/lib" > /dev/null
+        openssl genrsa -out .key.pem 2048
+        openssl req -new -key .key.pem -out .csr.pem
+        openssl x509 -req -days 9999 -in .csr.pem -signkey .key.pem -out .cert.pem
+        rm .csr.pem
+    popd > /dev/null
+fi
+
+
 function EXPORTS_run {
 
     BO_log "$VERBOSE" "[it.pinf.org.mozilla.web-ext] run: $@"
