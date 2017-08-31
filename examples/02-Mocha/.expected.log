@@ -1,5 +1,5 @@
 Adding route: /
->>>TEST_IGNORE_LINE:"(start|end|duration)": ".*Z",<<<
+>>>TEST_IGNORE_LINE:"(start|end|duration)": (".*Z"|[\d]+),?s*$<<<
 <RESULT>
 {
     "stats": {
@@ -8,7 +8,6 @@ Adding route: /
         "passes": 1,
         "pending": 0,
         "failures": 0,
-        "duration": 30
     }
 }
 </RESULT>
