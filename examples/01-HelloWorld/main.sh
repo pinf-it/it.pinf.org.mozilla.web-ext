@@ -14,7 +14,7 @@ CALL_webext run {
     "firefoxVersion": "firefoxdeveloperedition",
     "verbose": true,
     "routes": {
-        "/": function /* CodeBlock */ (API) {
+        "^/": function /* CodeBlock */ (API) {
             return function (req, res, next) {
                 res.writeHead(200, {
                     "Content-Type": "text/html"

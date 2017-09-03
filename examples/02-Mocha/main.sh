@@ -14,7 +14,7 @@ CALL_webext run {
     "firefoxVersion": "firefoxdeveloperedition",
     "verbose": true,
     "routes": {
-        "/": {
+        "^/": {
             "@it.pinf.org.mochajs#s1": {
                 "exit": true,
                 "tests": {
