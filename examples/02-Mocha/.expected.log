@@ -1,7 +1,8 @@
-Adding route: /
+Adding route: /^\//
 >>>TEST_IGNORE_LINE:"(start|end|duration)": (".*Z"|[\d]+),?s*$<<<
 <RESULT>
 {
+    "suite": "",
     "stats": {
         "suites": 3,
         "tests": 1,
