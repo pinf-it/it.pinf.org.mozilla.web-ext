@@ -11,7 +11,7 @@ CALL_webext run {
     "homepage": "/",
     "extension": "$__DIRNAME__/extension",
     "browserConsole": true,
-    "firefoxVersion": "firefoxdeveloperedition",
+    "firefoxVersion": "firefox",
     "verbose": true,
     "routes": {
         "^/": {
