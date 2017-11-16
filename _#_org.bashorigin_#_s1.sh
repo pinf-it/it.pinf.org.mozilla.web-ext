@@ -5,7 +5,7 @@ depend {
 }
 
 
-local NODE_VERSION=8
+local NODE_VERSION=9
 
 if [ ! -e "$__DIRNAME__/node_modules" ]; then
     pushd "$__DIRNAME__" > /dev/null
