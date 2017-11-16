@@ -5,12 +5,13 @@ depend {
 }
 
 
+local NODE_VERSION=7
+
 if [ ! -e "$__DIRNAME__/node_modules" ]; then
     pushd "$__DIRNAME__" > /dev/null
-        BO_run_npm install
+        BO_VERSION_NVM_NODE="$NODE_VERSION" BO_run_npm install
     popd > /dev/null
 fi
-
 
 if [ ! -e "$__DIRNAME__/lib/.key.pem" ]; then
     pushd "$__DIRNAME__/lib" > /dev/null
@@ -26,8 +27,9 @@ function EXPORTS_run {
 
     BO_log "$VERBOSE" "[it.pinf.org.mozilla.web-ext] run: $@"
 
-    BO_run_recent_node "$__DIRNAME__/lib/runner.js" "$@"
+    BO_VERSION_NVM_NODE="$NODE_VERSION" BO_run_node "$__DIRNAME__/lib/runner.js" "$@"
 }
+
 
 function EXPORTS_sign {
 
@@ -48,6 +50,7 @@ function EXPORTS_sign {
 
     # Update manifest
 
+    # TODO: Relocate to pinf-to and use here
     BO_run_recent_node --eval '
         const FS = require("fs");
         const LODASH = require("lodash");
@@ -70,14 +73,15 @@ function EXPORTS_sign {
 
     echo -e "\nValidating extension:\n"
 
-    "$__DIRNAME__/node_modules/.bin/web-ext" lint
+    BO_VERSION_NVM_NODE="$NODE_VERSION" BO_run_node "$__DIRNAME__/node_modules/.bin/web-ext" lint
 
     # Sign extension
 
     echo -e "\nSigning extension:\n"
 
     rm -Rf "web-ext-artifacts" || true
-    "$__DIRNAME__/node_modules/.bin/web-ext" sign \
+    #    --verbose \
+    BO_VERSION_NVM_NODE="$NODE_VERSION" BO_run_node "$__DIRNAME__/node_modules/.bin/web-ext" sign \
         --api-key "$MOZILLA_ADDONS_API_KEY_ISSUER" \
         --api-secret "$MOZILLA_ADDONS_API_KEY_SECRET"
 
