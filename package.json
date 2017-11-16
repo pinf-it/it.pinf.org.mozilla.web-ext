@@ -2,10 +2,10 @@
   "name": "it.pinf.org.mozilla.web-ext",
   "version": "0.1.1",
   "dependencies": {
-    "bash.origin.test": "^0.1.28",
+    "bash.origin.test": "^0.1.35",
     "bluebird": "^3.5.0",
     "body-parser": "^1.17.2",
-    "codeblock": "^0.2.8",
+    "codeblock": "^0.3.6",
     "express": "^4.15.4",
     "fs-extra": "^2.1.2",
     "get-port": "^3.1.0",
