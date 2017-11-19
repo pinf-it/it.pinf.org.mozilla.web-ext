@@ -52,14 +52,15 @@ function EXPORTS_sign {
 
     # TODO: Relocate to pinf-to and use here
     BO_run_recent_node --eval '
+        const LIB = require("bash.origin.workspace").forPackage("'$__DIRNAME__'").LIB;
+        
         const FS = require("fs");
-        const LODASH = require("lodash");
         var manifestOverrides = JSON.parse(process.argv[1]).manifest;
         if (!manifestOverrides) {
             process.exit(0);
         }
         var manifest = JSON.parse(FS.readFileSync("manifest.json", "utf8"));
-        LODASH.merge(manifest, manifestOverrides);
+        LIB.LODASH.merge(manifest, manifestOverrides);
 
         // Append git ref to pre version so we can create a unique release
         if (/pre$/.test(manifest.version)) {

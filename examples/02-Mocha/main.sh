@@ -7,6 +7,8 @@ depend {
     }
 }
 
+echo "TEST_MATCH_IGNORE>>>"
+
 CALL_webext run {
     "homepage": "/",
     "extension": "$__DIRNAME__/extension",
@@ -34,5 +36,7 @@ CALL_webext run {
         }
     }    
 }
+
+echo "<<<TEST_MATCH_IGNORE"
 
 echo "OK"
