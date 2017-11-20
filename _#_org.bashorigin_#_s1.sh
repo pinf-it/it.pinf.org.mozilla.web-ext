@@ -65,7 +65,7 @@ function EXPORTS_sign {
 
         // If we are not on master we designate the build as a preview release.
         if (process.argv[2] !== "master") {
-            manifest.description = "NOTE: This is a PREVIEW build for branch: " + process.argv[2] + "\\n\\n" + manifest.description;
+            manifest.description = "(NOTE: This is a PREVIEW build for branch: " + process.argv[2] + ") " + manifest.description;
             manifest.name += " (branch: " + process.argv[2] + ")";
             manifest.applications.gecko.id = manifest.applications.gecko.id.replace(
                 /@/,
