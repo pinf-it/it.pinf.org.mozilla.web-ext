@@ -5,7 +5,7 @@
         "publish": "npm"
     },
     "dependencies": {
-        "bash.origin.workspace": "^0.2.36",
+        "bash.origin.workspace": "^0.2.60",
         "web-ext": "^2.2.2"
     },
     "scripts": {

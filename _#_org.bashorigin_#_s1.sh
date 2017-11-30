@@ -5,13 +5,13 @@ depend {
 }
 
 
-local NODE_VERSION=9
+local NODE_VERSION="${BO_VERSION_NVM_NODE}"
 
-if [ ! -e "$__DIRNAME__/node_modules" ]; then
-    pushd "$__DIRNAME__" > /dev/null
-        BO_VERSION_NVM_NODE="$NODE_VERSION" BO_run_npm install
-    popd > /dev/null
-fi
+#if [ ! -e "$__DIRNAME__/node_modules" ]; then
+#    pushd "$__DIRNAME__" > /dev/null
+#        BO_VERSION_NVM_NODE="$NODE_VERSION" BO_run_npm install
+#    popd > /dev/null
+#fi
 
 # Key for HTTPS server
 if [ ! -e "$__DIRNAME__/lib/.key.pem" ]; then
