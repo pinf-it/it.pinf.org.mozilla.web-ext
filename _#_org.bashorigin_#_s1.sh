@@ -62,25 +62,8 @@ function EXPORTS_sign {
         }
         var manifest = JSON.parse(FS.readFileSync("manifest.json", "utf8"));
         LIB.LODASH.merge(manifest, manifestOverrides);
-
-        // If we are not on master we designate the build as a preview release.
-        if (process.argv[2] !== "master") {
-            manifest.description = "(NOTE: This is a PREVIEW build for branch: " + process.argv[2] + ") " + manifest.description;
-            manifest.name += " (branch: " + process.argv[2] + ")";
-            manifest.applications.gecko.id = manifest.applications.gecko.id.replace(
-                /@/,
-                "_branch_" + process.argv[2] + "@"
-            );
-            manifest.version += "pre";
-        }
-
-        // Append git ref to pre version so we can create a unique release
-        if (/pre$/.test(manifest.version)) {
-            manifest.version += "_" + (new Date().getTime()/1000|0);
-        }
-
         FS.writeFileSync("manifest.json", JSON.stringify(manifest, null, 4), "utf8");
-    ' "$1" "$(CALL_git get_branch)"
+    ' "$1"
 
     # Check extension
 
