@@ -53,9 +53,9 @@ function EXPORTS_sign {
 
     # TODO: Relocate to pinf-to and use here
     BO_run_recent_node --eval '
-        const LIB = require("bash.origin.workspace").forPackage("'$__DIRNAME__'").LIB;
+        const LIB = require("bash.origin.lib").forPackage("'$__DIRNAME__'").js;
         
-        const FS = require("fs");
+        const FS = LIB.fs;
         var manifestOverrides = JSON.parse(process.argv[1]).manifest;
         if (!manifestOverrides) {
             process.exit(0);

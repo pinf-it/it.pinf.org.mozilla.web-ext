@@ -5,6 +5,7 @@
   "version": "1.0",
   "permissions": [
     "webNavigation",
+    "tabs",
     "<all_urls>"
   ],  
   "background": {

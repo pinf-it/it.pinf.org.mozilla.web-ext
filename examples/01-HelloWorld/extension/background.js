@@ -1,16 +1,20 @@
 
-
 browser.webNavigation.onCompleted.addListener(function (requestDetails) {
 
-    if (
-        requestDetails.tabId &&
-        requestDetails.tabId !== -1
-    ) {
+    if (requestDetails.tabId) {
         browser.tabs.get(requestDetails.tabId).then(function (tab) {
 
             return browser.windows.get(tab.windowId).then(function (window) {
 
-                return browser.windows.remove(window.id);
+                console.log(`Loaded tab '${tab.id}' with window id '${window.id}'.`);
+                console.log(`Redirecting to: /done`);
+
+                if (/\/$/.test(tab.url)) {
+
+                    browser.tabs.executeScript({
+                        code: `window.location.pathname = '/done';`
+                    });    
+                }
             });
         }).catch(console.error);
     }
@@ -24,3 +28,5 @@ browser.webNavigation.onCompleted.addListener(function (requestDetails) {
         }
     ]
 });
+
+browser.tabs.reload();

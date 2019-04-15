@@ -4,9 +4,12 @@
     "pm": {
         "publish": "npm"
     },
+    "__dependencies": {
+        "bash.origin.workspace": "^0.2.68"
+    },
     "dependencies": {
-        "bash.origin.workspace": "^0.2.68",
-        "web-ext": "^2.2.2"
+        "web-ext": "^2.2.2",
+        "bluebird": "^3.5.2"
     },
     "scripts": {
         "prepublish": "rm -Rf examples/*/.rt/ || true",
