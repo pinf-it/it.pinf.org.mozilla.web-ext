@@ -75,11 +75,17 @@ function EXPORTS_sign {
 
     echo -e "\nSigning extension:\n"
 
+    # TODO: Make configurable via function argument
+    if [ -z "$MOZILLA_ADDONS_CHANNEL" ]; then
+        MOZILLA_ADDONS_CHANNEL="unlisted"
+    fi
+
     rm -Rf "web-ext-artifacts" || true
     #    --verbose \
     BO_VERSION_NVM_NODE="$NODE_VERSION" BO_run_node "$__DIRNAME__/node_modules/.bin/web-ext" sign \
         --api-key "$MOZILLA_ADDONS_API_KEY_ISSUER" \
-        --api-secret "$MOZILLA_ADDONS_API_KEY_SECRET"
+        --api-secret "$MOZILLA_ADDONS_API_KEY_SECRET" \
+        --channel "$MOZILLA_ADDONS_CHANNEL"
 
     # Copy generated XPI file to final target
 
