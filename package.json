@@ -1,18 +1,16 @@
 {
-    "name": "it.pinf.org.mozilla.web-ext",
-    "version": "0.1.10",
-    "pm": {
-        "publish": "npm"
-    },
-    "__dependencies": {
-        "bash.origin.workspace": "^0.2.68"
-    },
-    "dependencies": {
-        "web-ext": "^2.2.2",
-        "bluebird": "^3.5.2"
-    },
-    "scripts": {
-        "prepublish": "rm -Rf examples/*/.rt/ || true",
-        "test": "bash.origin.test examples"
-    }
+  "name": "it.pinf.org.mozilla.web-ext",
+  "version": "0.2.0-pre.0",
+  "pm": {
+    "publish": "npm"
+  },
+  "dependencies": {
+    "web-ext": "^2.2.2",
+    "bluebird": "^3.5.2",
+    "bash.origin.lib": "^0.4.0-pre.0"
+  },
+  "scripts": {
+    "prepublish": "rm -Rf examples/*/.rt/ || true",
+    "test": "bash.origin.test examples"
+  }
 }
