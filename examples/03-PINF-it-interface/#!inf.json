@@ -1,0 +1,46 @@
+#!/usr/bin/env inf
+{
+    "#": "gi0.PINF.it/core/v0",
+
+    "#": {
+        "web-ext": "it.pinf.org.mozilla.web-ext"
+    },
+
+    ":runner:": "web-ext @ runner/v0",
+
+
+    "gi0.PINF.it/core/v0 @ # :runner: set() config": {
+        "homepage": "/",
+        "extension": "../01-HelloWorld/extension",
+        "browserConsole": true,
+        "firefoxVersion": "firefox",
+        "verbose": true,
+        "routes": {
+            "^/$": (javascript (API) >>>
+                return function (req, res, next) {
+                    res.writeHead(200, {
+                        "Content-Type": "text/html"
+                    });
+                    res.end('<html>OK</html>');
+                };
+            <<<),
+            "^/done": (javascript (API) >>>
+                return function (req, res, next) {
+                    res.writeHead(200, {
+                        "Content-Type": "text/html"
+                    });
+                    res.end('<html>DONE</html>');
+    
+                    if (process.env.BO_TEST_FLAG_DEV) {
+                        console.error('SKIP stop due to BO_TEST_FLAG_DEV');
+                        return;
+                    }
+    
+                    API.SERVER.stop();
+                };
+            <<<)
+        }
+    },
+
+    "gi0.PINF.it/core/v0 @ # :runner: run()": ""
+}

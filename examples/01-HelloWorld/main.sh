@@ -39,7 +39,7 @@ CALL_webext run {
                 API.SERVER.stop();
             };
         }
-    }    
+    }
 }
 
 echo "<<<TEST_MATCH_IGNORE"
