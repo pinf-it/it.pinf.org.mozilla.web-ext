@@ -8,7 +8,6 @@
 
     ":runner:": "web-ext @ runner/v0",
 
-
     "gi0.PINF.it/core/v0 @ # :runner: set() config": {
         "homepage": "/",
         "extension": "../01-HelloWorld/extension",

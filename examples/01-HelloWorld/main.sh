@@ -2,7 +2,7 @@
 
 depend {
     "webext": {
-        "@com.github/pinf-it/it.pinf.org.mozilla.web-ext#s1": {
+        "it.pinf.org.mozilla.web-ext # runner/v0": {
         }
     }
 }

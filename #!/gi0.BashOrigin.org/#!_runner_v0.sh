@@ -1,7 +1,7 @@
 #!/usr/bin/env bash.origin.script
 
 depend {
-    "git": "@com.github/bash-origin/bash.origin.gitscm#s1"
+    "git": "bash.origin.gitscm # helpers/v0"
 }
 
 
@@ -14,8 +14,8 @@ local NODE_VERSION="${BO_VERSION_NVM_NODE}"
 #fi
 
 # Key for HTTPS server
-if [ ! -e "$__DIRNAME__/lib/.key.pem" ]; then
-    pushd "$__DIRNAME__/lib" > /dev/null
+if [ ! -e "$__DIRNAME__/../../lib/.key.pem" ]; then
+    pushd "$__DIRNAME__/../../lib" > /dev/null
         openssl genrsa -out .key.pem 2048
         openssl req -new -key .key.pem -out .csr.pem
         openssl x509 -req -days 9999 -in .csr.pem -signkey .key.pem -out .cert.pem
@@ -28,7 +28,10 @@ function EXPORTS_run {
 
     BO_log "$VERBOSE" "[it.pinf.org.mozilla.web-ext] run: $@"
 
-    BO_VERSION_NVM_NODE="$NODE_VERSION" BO_run_node "$__DIRNAME__/lib/runner.js" "$@"
+    # TODO: Use PINF-it interface.
+
+    # BO_VERSION_NVM_NODE="$NODE_VERSION" BO_run_node "$__DIRNAME__/../../lib/runner.js" "$@"
+    node "$__DIRNAME__/../../lib/runner.js" "$@"
 }
 
 
@@ -53,7 +56,7 @@ function EXPORTS_sign {
 
     # TODO: Relocate to pinf-to and use here
     BO_run_recent_node --eval '
-        const LIB = require("bash.origin.lib").forPackage("'$__DIRNAME__'").js;
+        const LIB = require("bash.origin.lib").forPackage("'$__DIRNAME__'/../..").js;
         
         const FS = LIB.fs;
         var manifestOverrides = JSON.parse(process.argv[1]).manifest;
@@ -69,7 +72,8 @@ function EXPORTS_sign {
 
     echo -e "\nValidating extension:\n"
 
-    BO_VERSION_NVM_NODE="$NODE_VERSION" BO_run_node "$__DIRNAME__/node_modules/.bin/web-ext" lint
+    # BO_VERSION_NVM_NODE="$NODE_VERSION" BO_run_node "$__DIRNAME__/../../node_modules/.bin/web-ext" lint
+    node "$__DIRNAME__/../../node_modules/.bin/web-ext" lint
 
     # Sign extension
 
@@ -82,7 +86,8 @@ function EXPORTS_sign {
 
     rm -Rf "web-ext-artifacts" || true
     #    --verbose \
-    BO_VERSION_NVM_NODE="$NODE_VERSION" BO_run_node "$__DIRNAME__/node_modules/.bin/web-ext" sign \
+    # BO_VERSION_NVM_NODE="$NODE_VERSION" BO_run_node "$__DIRNAME__/../../node_modules/.bin/web-ext" sign \
+    node "$__DIRNAME__/../../node_modules/.bin/web-ext" sign \
         --api-key "$MOZILLA_ADDONS_API_KEY_ISSUER" \
         --api-secret "$MOZILLA_ADDONS_API_KEY_SECRET" \
         --channel "$MOZILLA_ADDONS_CHANNEL"
@@ -109,5 +114,5 @@ function EXPORTS_sign {
 }
 
 function EXPORTS_basepath {
-    echo "$__DIRNAME__"
+    echo "$__DIRNAME__/../.."
 }
