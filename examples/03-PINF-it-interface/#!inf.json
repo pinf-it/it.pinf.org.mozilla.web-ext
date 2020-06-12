@@ -6,9 +6,9 @@
         "web-ext": "it.pinf.org.mozilla.web-ext"
     },
 
-    ":runner:": "web-ext @ runner/v0",
+    ":runner:": "web-ext @ runner/v1",
 
-    "gi0.PINF.it/core/v0 @ # :runner: set() config": {
+    "gi0.PINF.it/build/v0 @ # :runner: run() /": {
         "homepage": "/",
         "extension": "../01-HelloWorld/extension",
         "browserConsole": true,
@@ -39,7 +39,5 @@
                 };
             <<<)
         }
-    },
-
-    "gi0.PINF.it/core/v0 @ # :runner: run()": ""
+    }
 }

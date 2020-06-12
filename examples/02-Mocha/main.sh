@@ -10,7 +10,7 @@ depend {
 echo "TEST_MATCH_IGNORE>>>"
 
 CALL_webext run {
-    "homepage": "/",
+    "homepage": "/index.html",
     "extension": "$__DIRNAME__/extension",
     "browserConsole": true,
     "firefoxVersion": "firefox",

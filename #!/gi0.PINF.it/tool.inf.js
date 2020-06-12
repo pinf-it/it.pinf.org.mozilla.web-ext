@@ -38,13 +38,12 @@ exports['gi0.pinf.it/core/v0/tool'] = async function (workspace, LIB) {
 // console.log("config", config);
 
                     await RUNNER.run(config, {
-                        LIB: LIB,
-                        invocation: invocation
+                        LIB: LIB
                     });
 
                     return true;
                 }
-            };            
+            };
         }
     };
 }

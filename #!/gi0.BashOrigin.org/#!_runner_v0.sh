@@ -28,7 +28,7 @@ function EXPORTS_run {
 
     BO_log "$VERBOSE" "[it.pinf.org.mozilla.web-ext] run: $@"
 
-    # TODO: Use PINF-it interface.
+    # TODO: Port to PINF-it interface.
 
     # BO_VERSION_NVM_NODE="$NODE_VERSION" BO_run_node "$__DIRNAME__/../../lib/runner.js" "$@"
     node "$__DIRNAME__/../../lib/runner.js" "$@"
@@ -55,7 +55,7 @@ function EXPORTS_sign {
     # Update manifest
 
     # TODO: Relocate to pinf-to and use here
-    BO_run_recent_node --eval '
+    node --eval '
         const LIB = require("bash.origin.lib").forPackage("'$__DIRNAME__'/../..").js;
         
         const FS = LIB.fs;
@@ -90,7 +90,8 @@ function EXPORTS_sign {
     node "$__DIRNAME__/../../node_modules/.bin/web-ext" sign \
         --api-key "$MOZILLA_ADDONS_API_KEY_ISSUER" \
         --api-secret "$MOZILLA_ADDONS_API_KEY_SECRET" \
-        --channel "$MOZILLA_ADDONS_CHANNEL"
+        --channel "$MOZILLA_ADDONS_CHANNEL" \
+        --timeout "900000"
 
     # Copy generated XPI file to final target
 
@@ -98,7 +99,7 @@ function EXPORTS_sign {
         echo "ERROR: No 'web-ext-artifacts' directory holding signed extension found!"
         exit 1
     fi
-    dist=$(BO_run_recent_node --eval '
+    dist=$(node --eval '
         console.log(JSON.parse(process.argv[1]).dist);
     ' "$1")
     if [ -z "$dist" ]; then
